@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173f35">
+<title>Alfort Cadeau Bazar — Boutique en ligne</title>
+<style>
+:root{--green:#173f35;--green2:#245747;--cream:#fffaf0;--gold:#f0c66a;--ink:#1f2925;--muted:#66736d;--line:#e8e5db;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:#f8f7f2}button,input,select{font:inherit}button{cursor:pointer}
+.topline{background:var(--green);color:white;text-align:center;padding:8px 12px;font-size:12px}
+header{background:var(--cream);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.head{max-width:1200px;margin:auto;padding:14px 18px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;color:var(--green);text-decoration:none;min-width:0}.logo{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:var(--gold);font-size:25px;flex-shrink:0}.brandname{font-weight:850;font-size:17px;line-height:1.1}.brandname small{display:block;font-size:10px;letter-spacing:2px;margin-top:4px}
+.cartbtn,.primary,.secondary{border:0;border-radius:12px;padding:11px 14px;font-weight:750}.cartbtn{background:var(--green);color:white;white-space:nowrap}.cartcount{background:var(--gold);color:var(--green);border-radius:20px;padding:2px 7px;margin-left:4px}
+main{max-width:1200px;margin:auto;padding:18px}
+.hero{background:linear-gradient(120deg,#173f35,#356d54);color:white;border-radius:24px;padding:28px 22px;overflow:hidden;position:relative}
+.hero:after{content:"🎁";position:absolute;font-size:115px;right:10px;bottom:-10px;opacity:.22;transform:rotate(-12deg)}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px;font-weight:800;text-transform:uppercase}
+h1{font-size:clamp(28px,6vw,48px);line-height:1.04;max-width:620px;margin:12px 0}.hero p{color:#e2eee7;max-width:520px;line-height:1.5;margin-bottom:20px}
+.primary{background:var(--gold);color:var(--green)}.secondary{background:#edf2ee;color:var(--green)}
+.benefits{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 24px}.benefit{background:white;border:1px solid var(--line);border-radius:13px;padding:11px 13px;font-size:12px;flex:1;min-width:130px}
+.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:26px 0 14px}.sectionhead h2{margin:0;font-size:23px}.sectionhead p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.categories{display:flex;gap:9px;overflow-x:auto;padding:2px 0 8px}.cat{flex:0 0 auto;border:1px solid var(--line);background:white;border-radius:999px;padding:10px 14px;color:var(--ink)}.cat.active{background:var(--green);color:white;border-color:var(--green)}
+.toolbar{display:flex;gap:9px;margin:12px 0 16px}.search{min-width:0;flex:1;padding:12px 14px;border:1px solid #d8ddd7;border-radius:12px;background:white}.sort{max-width:145px;border:1px solid #d8ddd7;border-radius:12px;padding:10px;background:white}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product{background:white;border:1px solid var(--line);border-radius:17px;overflow:hidden;min-width:0;display:flex;flex-direction:column}.visual{height:132px;background:linear-gradient(145deg,#f5e8c8,#e9efe6);display:grid;place-items:center;font-size:57px;position:relative}.visual span{filter:drop-shadow(0 6px 4px #0001)}.pill{position:absolute;top:9px;left:9px;background:white;color:var(--green);font-size:10px;font-weight:800;border-radius:20px;padding:5px 8px}.prodinfo{padding:12px;display:flex;flex-direction:column;gap:7px;flex:1}.prodcat{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.7px}.prodname{font-size:14px;font-weight:750;line-height:1.25;min-height:35px}.desc{font-size:11px;color:var(--muted);line-height:1.4}.priceRow{display:flex;justify-content:space-between;align-items:center;gap:5px;margin-top:auto}.price{font-size:17px;font-weight:850;color:var(--green)}.stock{font-size:10px;color:#4d7659}.add{border:0;background:var(--green);color:white;border-radius:10px;padding:9px 11px;font-weight:800}.empty{grid-column:1/-1;text-align:center;background:white;border:1px dashed var(--line);border-radius:15px;padding:35px 15px;color:var(--muted)}
+.note{font-size:12px;color:var(--muted);line-height:1.5;margin:16px 0}
+footer{background:var(--green);color:#e8f0eb;margin-top:32px;padding:25px 18px;text-align:center;font-size:12px}footer strong{display:block;font-size:16px;margin-bottom:6px}
+.overlay{position:fixed;inset:0;background:#1119;z-index:30;display:none}.overlay.show{display:block}.drawer{position:absolute;right:0;top:0;height:100%;width:min(440px,100%);background:#fffaf3;padding:20px;overflow:auto;box-shadow:-10px 0 30px #0001}.drawerhead{display:flex;justify-content:space-between;align-items:center}.drawerhead h2{margin:0}.close{border:0;background:#e9eee9;border-radius:10px;padding:8px 12px}.cartline{display:grid;grid-template-columns:1fr auto;gap:8px;padding:14px 0;border-bottom:1px solid var(--line)}.cartline small{display:block;color:var(--muted);margin-top:4px}.qty{display:flex;align-items:center;gap:9px;margin-top:7px}.qty button{border:1px solid var(--line);background:white;border-radius:7px;padding:3px 9px}.total{display:flex;justify-content:space-between;font-weight:850;font-size:19px;padding:18px 0}.formrow{display:grid;gap:5px;margin:12px 0}.formrow label{font-size:12px;font-weight:750}.formrow input,.formrow select{width:100%;border:1px solid #d8ddd7;border-radius:10px;padding:11px;background:white}.full{width:100%}.notice{font-size:12px;background:#f2ead7;padding:11px;border-radius:10px;line-height:1.5;color:#554b35}
+@media(min-width:650px){main{padding:28px}.hero{padding:48px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.visual{height:170px}.prodinfo{padding:15px}}
+@media(min-width:950px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hero:after{font-size:180px;right:50px}.visual{height:180px}}
+</style>
+</head>
+<body>
+<div class="topline">Bienvenue chez Alfort Cadeau Bazar · Une boutique pratique pour toute la maison</div>
+<header><div class="head">
+<a class="brand" href="#" aria-label="Alfort Cadeau Bazar accueil"><div class="logo">🎁</div><div class="brandname">ALFORT CADEAU BAZAR<small>MAISON · CADEAUX · QUOTIDIEN</small></div></a>
+<button class="cartbtn" id="openCart">Panier <span class="cartcount" id="cartCount">0</span></button>
+</div></header>
+<main>
+<section class="hero">
+<div class="eyebrow">Votre bazar en ligne</div>
+<h1>Les petites trouvailles qui facilitent la vie.</h1>
+<p>Maison, cuisine, rangement, jouets et idées cadeaux : découvrez une sélection pour tous les jours.</p>
+<button class="primary" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Découvrir les produits ↓</button>
+</section>
+<div class="benefits"><div class="benefit">🎁 <strong>Idées cadeaux</strong><br>Pour toutes les occasions</div><div class="benefit">🏠 <strong>Pour la maison</strong><br>Des essentiels au quotidien</div><div class="benefit">📦 <strong>Commande simple</strong><br>Un panier pratique sur mobile</div></div>
+<section id="catalogue">
+<div class="sectionhead"><div><h2>Notre catalogue</h2><p id="resultCount">Produits de démonstration</p></div></div>
+<div class="categories" id="categories"></div>
+<div class="toolbar"><input class="search" id="search" placeholder="🔎 Rechercher un produit..." aria-label="Rechercher un produit"><select class="sort" id="sort" aria-label="Trier les produits"><option value="default">Pertinence</option><option value="low">Prix croissant</option><option value="high">Prix décroissant</option><option value="name">Nom A–Z</option></select></div>
+<div class="grid" id="products"></div>
+<p class="note">Les produits, illustrations, prix et stocks affichés sont des exemples de démonstration. Remplacez-les par les données réelles de votre boutique avant de vendre.</p>
+</section>
+</main>
+<footer><strong>Alfort Cadeau Bazar</strong>Votre boutique de proximité, bientôt en ligne.<br><br>Contact · Livraison · Retours · Mentions légales<br><br>© <span id="year"></span> Alfort Cadeau Bazar</footer>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Votre panier"><div class="drawer">
+<div class="drawerhead"><h2>Votre panier</h2><button class="close" id="closeCart">Fermer ✕</button></div>
+<div id="cartItems"></div><div class="total"><span>Total estimé</span><span id="total">0,00 €</span></div>
+<div class="notice">Prototype de démonstration : aucune commande n'est envoyée ni enregistrée sur un serveur. N'entrez pas de vraies informations personnelles ici.</div>
+<form id="orderForm">
+<div class="formrow"><label for="customerName">Nom et prénom</label><input id="customerName" required autocomplete="name" placeholder="Votre nom"></div>
+<div class="formrow"><label for="email">E-mail</label><input id="email" type="email" required autocomplete="email" placeholder="vous@exemple.fr"></div>
+<div class="formrow"><label for="phone">Téléphone</label><input id="phone" type="tel" autocomplete="tel" placeholder="06…"></div>
+<div class="formrow"><label for="address">Adresse de livraison</label><input id="address" required autocomplete="street-address" placeholder="Numéro et rue"></div>
+<div class="formrow"><label for="postcode">Code postal</label><input id="postcode" required inputmode="numeric" autocomplete="postal-code" placeholder="94000"></div>
+<div class="formrow"><label for="city">Ville</label><input id="city" required autocomplete="address-level2" placeholder="Ville"></div>
+<div class="formrow"><label for="payment">Mode de paiement souhaité</label><select id="payment"><option>Paiement en ligne (à configurer)</option><option>Paiement à la livraison (à confirmer)</option></select></div>
+<button class="primary full" type="submit">Préparer ma demande de commande</button>
+</form><div id="orderMessage" class="note" aria-live="polite"></div>
+</div></div>
+<script>
+const categoriesData=[
+{name:"Tout voir",icon:"✨"},
+{name:"Cuisine & vaisselle",icon:"🍽️"},
+{name:"Maison & rangement",icon:"🏠"},
+{name:"Salle de bain",icon:"🧼"},
+{name:"Jouets & enfants",icon:"🧸"},
+{name:"Papeterie & école",icon:"✏️"},
+{name:"Cadeaux & fête",icon:"🎁"},
+{name:"Nettoyage",icon:"🧹"},
+{name:"Sacs & accessoires",icon:"👜"},
+{name:"Électronique",icon:"🔌"},
+{name:"Textile & couvertures",icon:"🛏️"}
+];
+const seeds=[
+["Cuisine & vaisselle","Lot de spatules de cuisine","🍳",7.99,"Pratique pour cuisiner au quotidien"],
+["Cuisine & vaisselle","Boîte de conservation","🥡",4.50,"Pour organiser les aliments"],
+["Cuisine & vaisselle","Mug décoratif","☕",5.99,"Une idée cadeau simple"],
+["Cuisine & vaisselle","Set de couverts","🍴",12.90,"Pour les repas en famille"],
+["Maison & rangement","Boîte de rangement","🧺",8.50,"Pour garder chaque chose à sa place"],
+["Maison & rangement","Organiseur de tiroir","🗃️",6.90,"Optimisez votre espace"],
+["Salle de bain","Accessoires de salle de bain","🧴",9.90,"Pour une salle de bain ordonnée"],
+["Salle de bain","Serviette de toilette","🧖",6.50,"Un essentiel du quotidien"],
+["Jouets & enfants","Peluche toute douce","🧸",9.99,"Une idée cadeau pour les petits"],
+["Jouets & enfants","Jeu de construction","🧩",14.90,"Pour jouer et imaginer"],
+["Papeterie & école","Cahier scolaire","📓",2.20,"Pour les cours et les notes"],
+["Papeterie & école","Trousse à crayons","✏️",4.90,"Pour ranger les fournitures"],
+["Cadeaux & fête","Sac cadeau","🎀",2.50,"Pour emballer vos attentions"],
+["Cadeaux & fête","Décoration de fête","🎉",5.90,"Pour célébrer les bons moments"],
+["Nettoyage","Brosse de nettoyage","🧹",3.90,"Pour les tâches ménagères"],
+["Nettoyage","Boîte de lingettes microfibres","🧽",4.20,"Pour l'entretien de la maison"],
+["Sacs & accessoires","Sac de courses réutilisable","🛍️",3.50,"Pratique pour les courses"],
+["Sacs & accessoires","Petit portefeuille","👛",8.90,"Un accessoire du quotidien"],
+["Électronique","Lampe LED de bureau","💡",11.90,"Pour un coin travail bien éclairé"],
+["Textile & couvertures","Plaid doux","🛋️",16.90,"Pour les moments de détente"]
+];
+const products=[];
+for(let i=0;i<seeds.length;i++){let s=seeds[i];products.push({id:i+1,category:s[0],name:s[1],emoji:s[2],price:s[3],description:s[4],stock:8+(i%17),badge:i%4===0?"Populaire":""})}
+let activeCategory="Tout voir",cart={};
+const eur=n=>n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"});
+function renderCategories(){document.getElementById("categories").innerHTML=categoriesData.map(c=>`<button class="cat ${activeCategory===c.name?"active":""}" data-cat="${c.name}">${c.icon} ${c.name}</button>`).join("");document.querySelectorAll("[data-cat]").forEach(b=>b.addEventListener("click",()=>{activeCategory=b.dataset.cat;renderCategories();renderProducts()}))}
+function visibleProducts(){let q=document.getElementById("search").value.trim().toLocaleLowerCase("fr");let list=products.filter(p=>(activeCategory==="Tout voir"||p.category===activeCategory)&&(`${p.name} ${p.category} ${p.description}`.toLocaleLowerCase("fr").includes(q)));let sort=document.getElementById("sort").value;if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);if(sort==="name")list.sort((a,b)=>a.name.localeCompare(b.name,"fr"));return list}
+function renderProducts(){let list=visibleProducts();document.getElementById("resultCount").textContent=`${list.length} produit${list.length>1?"s":""} dans cette sélection`;document.getElementById("products").innerHTML=list.length?list.map(p=>`<article class="product"><div class="visual"><span>${p.emoji}</span>${p.badge?`<span class="pill">${p.badge}</span>`:""}</div><div class="prodinfo"><div class="prodcat">${p.category}</div><div class="prodname">${p.name}</div><div class="desc">${p.description}</div><div class="priceRow"><div><div class="price">${eur(p.price)}</div><div class="stock">Exemple de stock : ${p.stock}</div></div><button class="add" data-add="${p.id}" aria-label="Ajouter ${p.name} au panier">+ Ajouter</button></div></div></article>`).join(""):`<div class="empty">Aucun produit trouvé.<br>Essayez un autre mot-clé ou une autre catégorie.</div>`;document.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>addToCart(Number(b.dataset.add))))}
+function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();document.getElementById("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0)}
+function renderCart(){let entries=Object.entries(cart).filter(([id,q])=>q>0);document.getElementById("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{let p=products.find(x=>x.id===Number(id));return `<div class="cartline"><div><strong>${p.name}</strong><small>${eur(p.price)} l’unité</small><div class="qty"><button data-minus="${id}">−</button><span>${q}</span><button data-plus="${id}">+</button><button data-remove="${id}">Retirer</button></div></div><strong>${eur(p.price*q)}</strong></div>`}).join(""):`<div class="empty">Votre panier est vide.<br>Ajoutez un produit pour commencer.</div>`;let total=entries.reduce((sum,[id,q])=>sum+products.find(p=>p.id===Number(id)).price*q,0);document.getElementById("total").textContent=eur(total);document.getElementById("cartCount").textContent=entries.reduce((sum,[id,q])=>sum+q,0);document.querySelectorAll("[data-minus]").forEach(b=>b.onclick=()=>{let id=b.dataset.minus;cart[id]=Math.max(0,cart[id]-1);renderCart()});document.querySelectorAll("[data-plus]").forEach(b=>b.onclick=()=>{let id=b.dataset.plus;cart[id]++;renderCart()});document.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{delete cart[b.dataset.remove];renderCart()})}
+const overlay=document.getElementById("overlay");document.getElementById("openCart").onclick=()=>{overlay.classList.add("show");renderCart()};document.getElementById("closeCart").onclick=()=>overlay.classList.remove("show");overlay.addEventListener("click",e=>{if(e.target===overlay)overlay.classList.remove("show")});document.getElementById("search").addEventListener("input",renderProducts);document.getElementById("sort").addEventListener("change",renderProducts);
+document.getElementById("orderForm").addEventListener("submit",e=>{e.preventDefault();let n=Object.values(cart).reduce((a,b)=>a+b,0);if(!n){document.getElementById("orderMessage").textContent="Votre panier est vide. Ajoutez d’abord un produit.";return}document.getElementById("orderMessage").textContent="Votre demande de démonstration est prête, mais elle n’a pas été envoyée. Pour recevoir de vraies commandes, il faudra connecter un serveur sécurisé et un système de paiement.";});
+document.getElementById("year").textContent=new Date().getFullYear();renderCategories();renderProducts();renderCart();
+</script>
+</body></html>
